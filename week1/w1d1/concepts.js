@@ -15,15 +15,15 @@ var concepts = joinList(conceptList);
 
 // Write your code here...
 
-function joinList(input) {
+function joinList(array) {
 
-  var output = "";
+  var concatenatedArray = "";
 
-  for (var i = 0; i < input.length; i++) {
-    output += (input[i] + ", ");
+  for (var i = 0; i < array.length; i++) {
+    concatenatedArray += (array[i] + ", ");
     }
 
-  return output.substring(0,output.length-2);
+  return concatenatedArray.substring(0,concatenatedArray.length-2);
 
 }
 

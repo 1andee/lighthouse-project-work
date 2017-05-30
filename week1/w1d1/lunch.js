@@ -23,13 +23,9 @@ function whatToDoForLunch(hungry, availableTime) {
   else {
           if (availableTime < 20) {
             console.log("Pick something up and eat in the lab or kitchen");
-          }
-
-          else if ((availableTime => 20) && (availableTime <= 45)) {
+          } else if ((availableTime => 20) && (availableTime <= 45)) {
             console.log("You deserve a break! Enjoy lunch somewhere nearby.")
-          }
-
-          else {
+          } else {
             console.log("This is a bootcamp and you should consider how much time you have to spare");
           }
       }
