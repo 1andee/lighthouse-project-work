@@ -1,6 +1,6 @@
-/* Pair programmed by Tahuana and Ian on 29 May 2017 */
+/* Pair programmed by Tahuana and Ian on 29 May 2017 
+   Function returns a lunch suggestion based on hunger and available time
 
-/*
  * Modify the contents of the function below, such that:
  *
  * If we're not hungry, we want to tell ourselves to get back to work.

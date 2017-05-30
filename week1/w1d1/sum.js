@@ -1,3 +1,5 @@
+// Outputs the sum of two numbers to the console.
+
 var args = process.argv;
 
 var sum = Number(args[2]) + Number(args[3]);

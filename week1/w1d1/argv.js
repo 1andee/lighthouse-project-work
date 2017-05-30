@@ -1,3 +1,5 @@
+// Type 'insult' or 'compliment' on the command line along with a name
+
 var myArgs = process.argv.slice(2);
 console.log('myArg: ', myArgs);
 
