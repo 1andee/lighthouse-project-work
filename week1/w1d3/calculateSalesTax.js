@@ -39,10 +39,14 @@ for (var h = 0; h < companySalesData.length; h++) {
 for (var i = 0; i < companySalesData.length; i++) {
     var salesValue = companySalesData[i].sales;
 
+    var salesTotal = 0;
+
 // ITERARES THROUGH (AND LOGS) EACH VALUE IN SALES FIELD
       for (var j = 0; j < salesValue.length; j++) {
-        console.log(salesValue[j])
+        salesTotal += salesValue[j];
+        // console.log(salesValue[j])
       }
+      console.log(salesTotal);
 }
 
 // Implement the function calculateSalesTax that returns the results below.
