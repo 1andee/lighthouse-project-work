@@ -52,11 +52,14 @@ function calculateSalesTax(salesData, taxRates) {
 
       var totalTaxes = 0;
       for (var i in taxRates) {
-        //console.log("province:", i);
-        //console.log("taxRates", taxRates[i], "\n");
         if (tempProvince === i) {
          totalTaxes = sum * taxRates[i];
         }
+
+        // BUGGY PART HERE
+        // THIS IS WHERE IT NEEDS TO CHECK IF tempName EXISTS (!UNDEFINED)
+        // COMBINE sum AND totalTaxes INTO SAME OBJECT?
+
         container[tempName] = {sum, totalTaxes};
       }
 
