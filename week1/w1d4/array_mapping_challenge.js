@@ -17,3 +17,13 @@ var result = input.map(function(num) {
 console.log(result[0] === 5);
 console.log(result[1] === 13);
 console.log(result[2] === 17);
+
+
+// Additional example using Math.pow
+var resultPow = input.map(function(num) {
+  return Math.sqrt((Math.pow(num.x, 2)) + (Math.pow(num.y, 2)));    // Can use Math Pow here
+});
+
+console.log(resultPow[0] === 5);
+console.log(resultPow[1] === 13);
+console.log(resultPow[2] === 17);
