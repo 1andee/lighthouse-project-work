@@ -5,7 +5,7 @@ var sortaroo = array.sort(function (a,b) {
     return a - b;
 });
 
-console.log(sortaroo);
+//console.log(sortaroo);
 
 
 
@@ -25,8 +25,9 @@ var sortedStudentList = students.sort(function(a, b) {
     return 1;
   }
 
-  // names must be equal
-  return 0;
+  // if names aren't equal
+  return b.age - a.age;
+
 });
 
 console.log(sortedStudentList);
