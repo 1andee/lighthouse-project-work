@@ -24,37 +24,64 @@ var companySalesData = [
   }
 ];
 
-// console.log(companySalesData[0].sales[0]);
-// console.log(companySalesData[1].sales);
-// console.log(companySalesData[2].sales);
+
+// Testing object properties
+ // console.log(companySalesData[0].sales[0]);
+ // console.log(companySalesData[1].sales);
+ // console.log(companySalesData[2].sales);
 
 
-//  LOGS COMPANY NAME IN EACH ARRAY OBJECT
-for (var h = 0; h < companySalesData.length; h++) {
-    var companyName = companySalesData[h].name;
-    console.log(companyName)
-}
-
-// ITERATES THROUGH THE SALES FIELD OF EACH ARRAY OBJECT
-for (var i = 0; i < companySalesData.length; i++) {
-    var salesValue = companySalesData[i].sales;
-
-    var salesTotal = 0;
-
-// ITERARES THROUGH (AND LOGS) EACH VALUE IN SALES FIELD
-      for (var j = 0; j < salesValue.length; j++) {
-        salesTotal += salesValue[j];
-        // console.log(salesValue[j])
-      }
-      console.log(salesTotal);
-}
 
 // Implement the function calculateSalesTax that returns the results below.
 function calculateSalesTax(salesData, taxRates) {
 
-  // Implement your code here
+  var container = { };
+
+  //  LOGS COMPANY NAME IN EACH ARRAY OBJECT
+  for (var h = 0; h < companySalesData.length; h++) {
+      var tempName = companySalesData[h].name;
+      container[tempName] = { };
+      var tempProvince = companySalesData[h].province;
+      var tempSales = companySalesData[h].sales;
+      //console.log(tempName)
+
+      var sum = 0;
+      for (var i of tempSales) {
+        sum += i;
+      }
+
+      var totalTaxes = 0;
+      for (var i in taxRates) {
+        //console.log("province:", i);
+        //console.log("taxRates", taxRates[i], "\n");
+        if (tempProvince === i) {
+         totalTaxes = sum * taxRates[i];
+        }
+        container[tempName] = {sum, totalTaxes};
+      }
+
+      //console.log("sum: ", sum);
+      //console.log("total tax: ", totalTaxes);
+  }
+
+console.log(container);
+
 
 }
+
+
+  // // ITERATES THROUGH THE SALES FIELD OF EACH ARRAY OBJECT
+  // for (var i = 0; i < companySalesData.length; i++) {
+  //     var salesValue = companySalesData[i].sales;
+  //     var totalSales = 0;
+  //
+  // // ITERARES THROUGH (AND LOGS) EACH VALUE IN SALES FIELD
+  //       for (var j = 0; j < salesValue.length; j++) {
+  //         totalSales += salesValue[j];
+  //       }
+  //       // PUSH TOTAL SALES TO EACH OBJECT IN ARRAY?
+  //       //console.log(totalSales);
+  // }
 
 var results = calculateSalesTax(companySalesData, salesTaxRates);
 
