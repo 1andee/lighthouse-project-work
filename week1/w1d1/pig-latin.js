@@ -13,10 +13,8 @@ var revisedArray = [];
 function reverse(textToChange) {
   // Iterate through each item
   textToChange.forEach(function (element) {
-    // Remove first character of string and add to end, also adding "ay"
-    revisedWord = element.substring(1) + element[0] + "ay";
-    // Push revised string to placeholder array
-    revisedArray.push(revisedWord);
+    // Push to new array: String with first character placed at end, adding "ay"
+    revisedArray.push(element.substring(1) + element[0] + "ay");
   });
   // Display the array of revised words, with blank space between each item
   console.log(revisedArray.join(" "));
