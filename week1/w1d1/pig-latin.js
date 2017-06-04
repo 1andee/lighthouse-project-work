@@ -10,9 +10,9 @@ var input = process.argv.slice(2);
 // Create an empty array
 var revisedArray = [];
 
-function reverse(input) {
+function reverse(textToChange) {
   // Iterate through each item
-  input.forEach(function (element) {
+  textToChange.forEach(function (element) {
     // Remove first character of string and add to end, also adding "ay"
     revisedWord = element.substring(1) + element[0] + "ay";
     // Push revised string to placeholder array
