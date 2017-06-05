@@ -1,0 +1,14 @@
+{
+  "name": "http-request-client",
+  "version": "0.0.1",
+  "description": "Practice with HTTP using request package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ian Duke",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.81.0"
+  }
+}
