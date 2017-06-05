@@ -1,3 +1,5 @@
+// PRINTING WITH BUFFERED STRINGS
+
 /*  Create a second function that uses a buffering technique to append each
 chunk of data to a variable as it is received, and then console.log the data
 once all of the data has been received.
