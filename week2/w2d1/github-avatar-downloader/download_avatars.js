@@ -3,17 +3,17 @@ var request = require('request');
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
-var GITHUB_USER = "1andee";
-var GITHUB_TOKEN = "839db10ba9c796bd7b1f1c4a0fd08023ac1f9ee3";
-var USER_AGENT = {headers: {
-  'User-Agent': '1anDee GitHub Avatar Downloader - LHL Student Project'
+var GITHUB_USER = process.env.GITHUB_USER;
+var GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+var CONFIG = {headers: {
+  'User-Agent': 'GitHub Avatar Downloader - LHL Student Project'
   }
 }
 
 function getRepoContributors(repoOwner, repoName, cb) {
 var requestURL = 'https://'+ GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
-console.log(requestURL);
-request.get(requestURL, USER_AGENT)
+console.log(requestURL)
+request.get(requestURL, CONFIG)
 .on('error', function (err) {
   throw err;
 })
@@ -21,14 +21,16 @@ request.get(requestURL, USER_AGENT)
   console.log('Response Status Code: ', response.statusCode);
   console.log('Response Status Message: ', response.statusMessage);
   console.log('Response Content Type: ', response.headers['content-type']);
+  // console.log(response);
+  // console.log(response.avatar_url);
+  // var json = JSON.parse(response)
+
+  // THIS IS WHERE YOU WANT TO RETRIEVE THE AVATAR URLS FROM THE JSON FILE
+  // cb(????)    // REPLACE WITH WHATEVER OBJECT YOU PLACE THE AVATARS INTO
 })
-//.pipe(fs.createWriteStream('./future.jpg'));
-// .on('end', function () {
-//   console.log('Download Complete');
-// })
 };
 
-getRepoContributors("jquery", "jquery", function(err, result) {
-  console.log("Errors:", err);
-  console.log("Result:", result);
+getRepoContributors("jquery", "jquery", function(err, response) {
+  // console.log("Errors:", err);
+  // console.log("Result:", result);
 });
