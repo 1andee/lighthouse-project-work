@@ -46,9 +46,9 @@ app.get('/', (req, res) => {
 // blog post
 app.get('/post/:id', (req, res) => {
   // find the post in the `posts` array
-  var post = posts.filter((post => {
+  const post = posts.filter((post) => {
     return post.id == req.params.id
-  })[0])      // THROWS ERROR WITHOUT CLOSED PARENTHESES HERE
+  })[0]
 
   // render the `post.ejs` template with the post content
   res.render('post', {

@@ -32,11 +32,11 @@
           <div class="list-group">
             <!-- loop over every blog posts and render them -->
             <% posts.forEach((post => { %>
-              <a href="/post<%= post.id %>" class="list-group-item">
+              <a href="/post/<%= post.id %>" class="list-group-item">
                 <h4 class="list-group-item-heading"><%= post.title %></h4>
                 <p class="list-group-item-text"><%= post.author %></p>
               </a>
-              <% })) %>   <!-- ADDED CLOSED PARENTHESES TO CLOSE posts.forEach -->
+              <% })) %>
             </div>
           </div>
         </div>
