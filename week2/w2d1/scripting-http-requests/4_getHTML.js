@@ -23,16 +23,17 @@ function getHTML (options, callback) {
       html.push(data);
     });
 
-    response.on('end', function() {
-      console.log(html.join(""));
-      console.log('[--END OF HTML--].');
+    response.on('end', function (data) {
+      var joinedHTML = html.join("");
+      callback(joinedHTML);
     });
 
   });
 }
 
 function printHTML (html) {
-  console.log(html);
+  console.log(html)
+  console.log('[--END OF HTML--].');
 }
 
 var requestOptions = {
@@ -40,7 +41,7 @@ var requestOptions = {
   path: '/http-examples/step4.html'
 };
 
-getHTML(requestOptions, printHTML);
+// Commented out Line 45 so the function is not called when exported
+// getHTML(requestOptions, printHTML);
 
-
-module.exports = getHTML
+module.exports = getHTML;
