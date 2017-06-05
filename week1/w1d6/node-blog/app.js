@@ -17,7 +17,7 @@ var posts = [
   {
     id: 2,
     author: 'McLovin',
-    title: 'Why I\'m lovin\' Express',
+    title: 'Why I am lovin Express',
     body: 'Blog post number two'
   },
   {
@@ -29,7 +29,7 @@ var posts = [
   {
     id: 4,
     author: 'Mike from Canmore',
-    title: 'Hip happenin\' events',
+    title: 'Hip happenin events',
     body: 'Blog post number four'
   }
 ]
