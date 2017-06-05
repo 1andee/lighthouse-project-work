@@ -41,3 +41,6 @@ var requestOptions = {
 };
 
 getHTML(requestOptions, printHTML);
+
+
+module.exports = getHTML
