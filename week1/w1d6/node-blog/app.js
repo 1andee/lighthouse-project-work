@@ -48,7 +48,7 @@ app.get('/post/:id', (req, res) => {
   // find the post in the `posts` array
   var post = posts.filter((post => {
     return post.id == req.params.id
-  })[0])
+  })[0])      // THROWS ERROR WITHOUT CLOSED PARENTHESES HERE
 
   // render the `post.ejs` template with the post content
   res.render('post', {
