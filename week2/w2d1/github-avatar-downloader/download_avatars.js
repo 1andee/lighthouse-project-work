@@ -2,12 +2,19 @@ var https = require('https');
 var request = require('request');
 var fs = require('fs');
 
-// Handles the user-designated account and repo for processing:
-var userArgs = process.argv.slice(2);
-var githubAccount = userArgs[0];
-var githubRepository = userArgs[1];
+var userInput = process.argv.slice(2);
+var githubAccount = userInput[0];
+var githubRepo = userInput[1];
 
-console.log('Welcome to the GitHub Avatar Downloader!');
+function checkUserInput (userInput) {
+  if (userInput.length !== 2) {
+    console.log('Please provide a valid GitHub account and Repository.');
+    console.log("The required inputs are: <owner> <repo>");
+    return;
+  }
+};
+
+console.log('Welcome to the GitHub Avatar Downloader! Commencing download in 3...2...1...');
 
 // Requestor's username and API token required:
 var GITHUB_USER = process.env.GITHUB_USER;
@@ -49,10 +56,10 @@ function downloadImageByURL(url, filePath) {
   })
   // Assigns directory, filename, and file extension for downloaded images:
   .pipe(fs.createWriteStream('./avatars/' + filePath + '.jpg'));
-}
+};
 
 // Iterates through JSON data, passing avatar URL and user ID into downloadImageByURL():
-getRepoContributors(githubAccount, githubRepository, function(error, response) {
+getRepoContributors(githubAccount, githubRepo, function(error, response) {
   response.forEach(function (response) {
     downloadImageByURL(response.avatar_url, response.login);
     console.log('Downloading avatar for contributor ' + response.login)
