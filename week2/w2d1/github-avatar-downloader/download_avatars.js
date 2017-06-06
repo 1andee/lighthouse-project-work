@@ -4,17 +4,17 @@ var fs = require('fs');
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
-// Requestor's username and API token required
+// Requestor's username and API token required:
 var GITHUB_USER = process.env.GITHUB_USER;
 var GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 function getRepoContributors(repoOwner, repoName, callback) {
 
   // Creates URL for HTTP GET Request using requestor's username and API token
-  // and desired repository account / repo name to pull thumbnails from
+  // and desired repository account / repo name to pull thumbnails from:
   var requestURL = 'https://'+ GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
 
-  // Assigns the URL and User-Agent for GET request
+  // Assigns the URL and User-Agent for GET request:
   var options = {
     'url': requestURL,
     'method': 'GET',
@@ -23,34 +23,34 @@ function getRepoContributors(repoOwner, repoName, callback) {
     }
   }
 
-request(options, function (error, response, body) {
-  if (error) {
-    console.log(error);
-  };
-  // Parses JSON body and assigns to 'users' variable
-  var users = JSON.parse(body);
+  request(options, function (error, response, body) {
+    if (error) {
+      console.log(error);
+    };
+    // Parses JSON body and assigns to 'users' variable:
+    var users = JSON.parse(body);
 
-  // Map avatar URLs into new array
-  var avatarLinkList = users.map(function (user) {
-    return user.avatar_url;
-  });
-
-  callback(null, avatarLinkList);
-
-})
+    // Passes JSON data as response into getRepoContributors():
+    callback(null, users);
+  })
 };
 
 function downloadImageByURL(url, filePath) {
-request.get(url)
-.on('error', function (err) {
-  throw err;
-})
-.on('end', function () {
-})
-.pipe(fs.createWriteStream(filePath));
+  request.get(url)
+  .on('error', function (err) {
+    throw err;
+  })
+  .on('end', function () {
+  })
+  // Assigns directory, filename, and file extension for downloaded images:
+  .pipe(fs.createWriteStream('./avatars/' + filePath + '.jpg'));
 }
 
-// getRepoContributors('jquery', 'jquery', function(error, response) {
-//   console.log('Errors:', error);
-//   console.log('Result:', response);
-// });
+// Iterates through JSON data, passing avatar URL and user ID into downloadImageByURL():
+getRepoContributors('jquery', 'jquery', function(error, response) {
+  response.forEach(function (response) {
+    downloadImageByURL(response.avatar_url, response.login);
+    console.log('Downloading avatar for contributor ' + response.login)
+  });
+  console.log('Avatars for all contributors downloaded. Have a nice day!');
+});
