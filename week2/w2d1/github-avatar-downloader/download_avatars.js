@@ -2,6 +2,11 @@ var https = require('https');
 var request = require('request');
 var fs = require('fs');
 
+// Handles the user-designated account and repo for processing:
+var userArgs = process.argv.slice(2);
+var githubAccount = userArgs[0];
+var githubRepository = userArgs[1];
+
 console.log('Welcome to the GitHub Avatar Downloader!');
 
 // Requestor's username and API token required:
@@ -47,7 +52,7 @@ function downloadImageByURL(url, filePath) {
 }
 
 // Iterates through JSON data, passing avatar URL and user ID into downloadImageByURL():
-getRepoContributors('jquery', 'jquery', function(error, response) {
+getRepoContributors(githubAccount, githubRepository, function(error, response) {
   response.forEach(function (response) {
     downloadImageByURL(response.avatar_url, response.login);
     console.log('Downloading avatar for contributor ' + response.login)
