@@ -23,11 +23,11 @@ function checkUserInput (userInput) {
 console.log('Welcome to the GitHub Avatar Downloader! Commencing download in 3...2...1...');
 
 
-function getRepoContributors(repoOwner, repoName, callback) {
+function getRepoContributors(owner, repo, callback) {
 
   // Creates URL for HTTP GET Request using requestor's username and API token
   // and desired repository account / repo name to pull thumbnails from:
-  var requestURL = 'https://'+ GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
+  var requestURL = 'https://'+ GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + owner + '/' + repo + '/contributors';
 
   // Assigns the URL and User-Agent for GET request:
   var options = {
