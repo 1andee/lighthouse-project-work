@@ -30,20 +30,13 @@ request(options, function (error, response, body) {
   // Parses JSON body and assigns to 'users' variable
   var users = JSON.parse(body);
 
-                  // var contributor_avatars = [];
+  // Map avatar URLS into new array
+  var newAvatarList = users.map(function (user) {
+    return user.avatar_url;
+  });
 
-  // Iterate through JSON data and pull contributor avatar URLs
-  for (key in users) {
-  console.log(users[key].avatar_url);
-  }
+  callback(null, newAvatarList);
 
-                  // for (key in users) {
-                  //   contributor_avatars.push(users[key].avatar_url);
-                  //   }
-
-  callback();
-
-                  // callback(error, contributor_avatars);
 })
 };
 
