@@ -2,10 +2,16 @@ var https = require('https');
 var request = require('request');
 var fs = require('fs');
 
+// User's GitHub username and API token required:
+var GITHUB_USER = process.env.GITHUB_USER;
+var GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+
+// Takes the user-supplied account and repo from Command Line to generate request:
 var userInput = process.argv.slice(2);
 var githubAccount = userInput[0];
 var githubRepo = userInput[1];
 
+// Checks if user has supplied an account and repo
 function checkUserInput (userInput) {
   if (userInput.length !== 2) {
     console.log('Please provide a valid GitHub account and Repository.');
@@ -16,9 +22,6 @@ function checkUserInput (userInput) {
 
 console.log('Welcome to the GitHub Avatar Downloader! Commencing download in 3...2...1...');
 
-// Requestor's username and API token required:
-var GITHUB_USER = process.env.GITHUB_USER;
-var GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 function getRepoContributors(repoOwner, repoName, callback) {
 
