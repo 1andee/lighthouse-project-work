@@ -10,9 +10,8 @@ function makeLoadedDie() {
   var i = 0;
 
     return function () {
+      list.push(list[i]);
       return list[i++];
-      // once all array items are returned / exhausted, function will return undefined
-      // needs to push item to back of array
     }
   }
 
