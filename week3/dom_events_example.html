@@ -1,0 +1,44 @@
+<html>
+<head>
+</head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<script>
+$(document).ready(function() {
+
+$( document ).on( "dblclick", function( event ) {
+  $( "#response" ).text( "pageX: " + event.pageX + ", pageY: " + event.pageY );
+})
+
+$('#formmy').keypress(function()
+  {
+
+      var txtInput = $(this).val();
+      txtInput = txtInput.charAt(txtInput.length-1);
+      console.log((txtInput));
+
+  })
+
+});
+</script>
+<body>
+
+<div id="whatevs">
+whateeevvvvvvvvs
+<form>
+  <textarea id="formmy">
+  </textarea>
+
+</form>
+</div>
+<br>
+<br>
+<br>
+Mouse doubleclick coordinates:
+<div id="response">
+</div>
+
+
+
+  </body>
+  </html>
