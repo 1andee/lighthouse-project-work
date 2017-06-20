@@ -17,9 +17,9 @@ const lastName = process.argv[2];
 const firstName = process.argv[3];
 const birthDate = process.argv[4];
 
-console.log(`${firstName} ${lastName}, born ${birthDate}`)
 
 knex('famous_people').insert({last_name: lastName, first_name: firstName, birthdate: birthDate})
+console.log(`Inserting new famous person ${firstName} ${lastName}...`)
   .then((result) => {
     console.log(result);
   })
