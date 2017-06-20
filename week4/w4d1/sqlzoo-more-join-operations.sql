@@ -4,7 +4,7 @@ More JOIN operations
 This tutorial introduces the notion of a join. The database consists of three
 tables movie , actor and casting .
 
-Retrieved Mon July 19, 2017 from http://sqlzoo.net/wiki/More_JOIN_operations
+Retrieved Mon June 19, 2017 from http://sqlzoo.net/wiki/More_JOIN_operations
 */
 
 -- #1. List the films where the yr is 1962 [Show id, title]

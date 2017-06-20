@@ -5,7 +5,7 @@ This tutorial introduces JOIN which allows you to use data from two or more tabl
 The tables contain all matches and goals from UEFA EURO 2012 Football Championship
 in Poland and Ukraine.
 
-Retrieved Mon July 19, 2017 from http://sqlzoo.net/wiki/The_JOIN_operation
+Retrieved Mon June 19, 2017 from http://sqlzoo.net/wiki/The_JOIN_operation
 */
 
 -- #1.
