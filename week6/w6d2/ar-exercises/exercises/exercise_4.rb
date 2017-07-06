@@ -30,4 +30,4 @@ end
 # 4. Do another fetch but this time load stores that carry women's
 #    apparel and are generating less than $1M in annual revenue.
 @womens_stores = Store.where(womens_apparel: true).where("annual_revenue < ?", 1000000)
-pp @womens_stores
+puts @womens_stores

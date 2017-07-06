@@ -1,6 +1,6 @@
 require_relative '../setup'
 
-puts "Exercise 1"
+puts "Exercise 1\nCreate 3 stores"
 puts "----------"
 
 # 1. Use Active Record's `create` class method multiple times to

@@ -2,7 +2,7 @@ require_relative '../setup'
 require_relative './exercise_1'
 require_relative './exercise_2'
 
-puts "Exercise 3"
+puts "Exercise 3\nDelete the third store"
 puts "----------"
 
 # 1. Load the third store (into `@store3`)
