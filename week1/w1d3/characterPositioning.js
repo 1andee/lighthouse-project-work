@@ -4,29 +4,27 @@ Re-factored countLetters.js to track character position count
 */
 
 function countLetters(string) {
-  objectOfChars = { };
+  objectOfChars = {};
   stringArray = string.split("").join("").toLowerCase();
 
   for (var i = 0; i < stringArray.length; i++) {
-      // Line 12 assigns variable to current character
+      // Assigns variable to current character
       var currentChar = stringArray[i];
-      // Line 14 handles first instance of a character
+      // Handle first instance of a character
       if (objectOfChars[currentChar] === undefined) {
-          /*
-          Lines 19-21 convert single instances to a string
-          May require cleaning up
-          */
-          var num = [i];
-          var convertedNum = [num].toString();
+          // Convert first instance of a char to string
+          var convertedNum = [i].toString();
           objectOfChars[currentChar] = convertedNum;
           } else {
-          // Line 24 handles multiple instances
+          // Handle multiple instances of a character
             objectOfChars[currentChar] += ', ' + [i];
-          }
-      }
-  delete objectOfChars[' '];      // Removes spaces from appearing in character count
+          };
+      };
+  // Removes spaces from character count
+  delete objectOfChars[' '];
+
   return objectOfChars;
-}
+};
 
 console.log(countLetters("Lighthouse in the house"));
 
