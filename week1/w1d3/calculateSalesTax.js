@@ -29,51 +29,44 @@ function calculateSalesTax(salesData, taxRates) {
 
   var container = {};
 
-  //  LOGS COMPANY NAME IN EACH ARRAY OBJECT
+  function sumSales(tempSales) {
+    for (var i of tempSales) {
+      sum += i;
+    };
+  };
+
+  function calculateTax(taxRates, tempProvince) {
+    for (var i in taxRates) {
+      if (tempProvince === i) {
+        totalTaxes = sum * taxRates[i];
+      };
+    };
+  };
+
   for (var h = 0; h < companySalesData.length; h++) {
     var tempName = companySalesData[h].name;
+    var tempProvince = companySalesData[h].province;
+    var tempSales = companySalesData[h].sales;
+
+    var sum = 0;
+    sumSales(tempSales);
+
+    var totalTaxes = 0;
+    calculateTax(taxRates, tempProvince);
+
     if (container[tempName] == undefined) {
-      var tempProvince = companySalesData[h].province;
-      var tempSales = companySalesData[h].sales;
-
-      var sum = 0;
-      for (var i of tempSales) {
-        sum += i;
-      }
-
-      var totalTaxes = 0;
-      for (var i in taxRates) {
-        if (tempProvince === i) {
-          totalTaxes = sum * taxRates[i];
-        }
-        container[tempName] = {sum, totalTaxes};
-      }
+      container[tempName] = {sum, totalTaxes};
     } else {
-      var tempProvince = companySalesData[h].province;
-      var tempSales = companySalesData[h].sales;
-
-      var sum = 0;
-      for (var i of tempSales) {
-        sum += i;
-      }
-
-      var totalTaxes = 0;
-      for (var i in taxRates) {
-        if (tempProvince === i) {
-          totalTaxes = sum * taxRates[i];
-        }
-      }
-
       container[tempName].sum += sum;
       container[tempName].totalTaxes += totalTaxes;
-    }
-  }
-  console.log(container);
-}
+    };
+  };
+  return container;
+};
 
-var results = calculateSalesTax(companySalesData, salesTaxRates);
+console.log(calculateSalesTax(companySalesData, salesTaxRates));
 
-/* Expected Results:
+/* Expected output:
 {
 Telus: {
 totalSales: 1300
