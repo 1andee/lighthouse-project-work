@@ -1,4 +1,4 @@
-/* Pair programmed by Tahuana and Ian on 29 May 2017 
+/* Pair programmed by Tahuana and Ian on 29 May 2017
    Function returns a lunch suggestion based on hunger and available time
 
  * Modify the contents of the function below, such that:
@@ -23,7 +23,7 @@ function whatToDoForLunch(hungry, availableTime) {
   else {
           if (availableTime < 20) {
             console.log("Pick something up and eat in the lab or kitchen");
-          } else if ((availableTime => 20) && (availableTime <= 45)) {
+          } else if (availableTime <= 45) {
             console.log("You deserve a break! Enjoy lunch somewhere nearby.")
           } else {
             console.log("This is a bootcamp and you should consider how much time you have to spare");
