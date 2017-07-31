@@ -1,4 +1,3 @@
-// implement a function that calculates the total sales and total tax, grouped by company.
 
 var salesTaxRates = {
   AB: 0.05,
@@ -24,41 +23,41 @@ var companySalesData = [
   }
 ];
 
-// Implement the function calculateSalesTax that returns the results below.
+// implement a function that calculates the total sales and total tax, grouped by company.
 function calculateSalesTax(salesData, taxRates) {
 
   var container = {};
 
-  function sumSales(tempSales) {
-    for (var i of tempSales) {
+  function sumSales(salesArray) {
+    for (var i of salesArray) {
       sum += i;
     };
   };
 
-  function calculateTax(taxRates, tempProvince) {
+  function calculateTax(taxRates, province) {
     for (var i in taxRates) {
-      if (tempProvince === i) {
+      if (province === i) {
         totalTaxes = sum * taxRates[i];
       };
     };
   };
 
   for (var h = 0; h < companySalesData.length; h++) {
-    var tempName = companySalesData[h].name;
-    var tempProvince = companySalesData[h].province;
-    var tempSales = companySalesData[h].sales;
+    var company = companySalesData[h].name;
+    var province = companySalesData[h].province;
+    var provincialSales = companySalesData[h].sales;
 
     var sum = 0;
-    sumSales(tempSales);
+    sumSales(provincialSales);
 
     var totalTaxes = 0;
-    calculateTax(taxRates, tempProvince);
+    calculateTax(taxRates, province);
 
-    if (container[tempName] == undefined) {
-      container[tempName] = {sum, totalTaxes};
+    if (container[company] == undefined) {
+      container[company] = {sum, totalTaxes};
     } else {
-      container[tempName].sum += sum;
-      container[tempName].totalTaxes += totalTaxes;
+      container[company].sum += sum;
+      container[company].totalTaxes += totalTaxes;
     };
   };
   return container;
@@ -68,13 +67,13 @@ console.log(calculateSalesTax(companySalesData, salesTaxRates));
 
 /* Expected output:
 {
-Telus: {
-totalSales: 1300
-totalTaxes: 144
-},
-Bombardier: {
-totalSales: 800,
-totalTaxes: 40
-}
+  Telus: {
+  totalSales: 1300
+  totalTaxes: 144
+  },
+  Bombardier: {
+  totalSales: 800,
+  totalTaxes: 40
+  }
 }
 */
