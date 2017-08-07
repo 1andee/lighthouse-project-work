@@ -49,11 +49,13 @@ var data = {
   }
 };
 
+
 // 1) List everyone and for each of them, list the names of who they follow and who follows them
 
+console.log('Exercise 1')
+console.log('List everyone, including their names, who they follow, and who follows them')
+
 function showNames(data) {
-  console.log('Exercise 1')
-  console.log('List everyone, including their names, who they follow, and who follows them')
   for (i in data) {
     console.log('----------------------')
     console.log('User:', data[i].name);
@@ -89,9 +91,14 @@ function printFollowers(element) {
   };
 };
 
-showNames(data);
+// showNames(data);
+
 
 // 2) Identify who follows the most people
+
+console.log('######################')
+console.log('Exercise 2')
+console.log('Who follows the most people?')
 
 function countFollowers(data) {
   topIdCount = 0;
@@ -101,22 +108,19 @@ function countFollowers(data) {
       topIdCount = data[i].follows.length;
     };
   };
-  console.log('######################')
-  console.log('Exercise 2')
-  console.log('Who follows the most people?')
   console.log(`${topName}, who follows ${topIdCount} users`);
 };
 
-countFollowers(data);
+// countFollowers(data);
+
 
 // 3) Identify who has the most followers
 
+console.log('######################')
+console.log('Exercise 3')
+console.log('Identify who has the most followers:')
+
 function tallyFollowers(data) {
-
-  console.log('######################')
-  console.log('Exercise 3')
-  console.log('Identify who has the most followers:')
-
   followTally = {};
 
   // Iterate through every user
@@ -133,9 +137,6 @@ function tallyFollowers(data) {
       };
     });
   };
-
-  returnSort(followTally);
-
 };
 
 // Sort values in object
@@ -152,17 +153,21 @@ function returnSort(object) {
   console.log(sortable);
 };
 
-tallyFollowers(data);
+function tallyAndSort(data) {
+  tallyFollowers(data)
+  returnSort(followTally)
+};
+
+tallyAndSort(data);
+
 
 // 4) Identify who has the most followers over 30
 
+console.log('######################')
+console.log('Exercise 4')
+console.log('Identify who has the most followers over age 30:')
 
 function tallyFollowersThirtyPlus(data) {
-
-  console.log('######################')
-  console.log('Exercise 4')
-  console.log('Identify who has the most followers over age 30:')
-
   followTally = {};
 
   // Iterate through every user
@@ -187,10 +192,62 @@ function tallyFollowersThirtyPlus(data) {
 
 };
 
-tallyFollowersThirtyPlus(data);
+// tallyFollowersThirtyPlus(data);
+
 
 // 5) Identify who follows the most people over 30
+
+function tallyFollowThirtyPlus(data) {
+
+  console.log('######################')
+  console.log('Exercise 5')
+  console.log('Identify who follows the most people over age 30:')
+
+  followTally = {};
+
+  // Iterate through every user
+  for (i in data) {
+    var currentUserName = data[i].name;
+    var currentUserFollowing = data[i].follows;
+      // Increments follower count, or sets to 1 if user isn't stored in object
+      currentUserFollowing.forEach(function(element) {
+        // Check if User's age is > 30
+        if (data[element].age > 30) {
+          if (followTally[currentUserName] == undefined) {
+            followTally[currentUserName] = 1;
+          } else {
+            followTally[currentUserName]++;
+          };
+        };
+      });
+  };
+
+  returnSort(followTally);
+
+};
+
+// tallyFollowThirtyPlus(data);
 
 // 6) List those who follow someone that doesn't follow them back
 
 // 7) List everyone and their reach (sum of # of followers and # of followers of followers)
+
+console.log('######################')
+console.log('Exercise 7')
+console.log('List everyone and their reach:')
+
+function determineReach(input) {
+  tallyFollowers(input);
+  // Show # of followers for each user:
+  console.log(followTally);
+  // Determine # of followers for each follower
+  //
+  // Steps:
+  // 1. Find userID for each follower
+  // 2. Calculate # of followers for each userID
+  // 3. Add this number to followTally object
+  //
+  // Similar to printFollowers (Line 78) or tallyFollowers (Line 123)
+};
+
+determineReach(data)
