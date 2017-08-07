@@ -188,7 +188,6 @@ function tallyFollowersThirtyPlus(data) {
   };
 
   returnSort(followTally);
-
 };
 
 tallyFollowersThirtyPlus(data);
@@ -222,12 +221,46 @@ function tallyFollowThirtyPlus(data) {
   };
 
   returnSort(followTally);
-
 };
 
 tallyFollowThirtyPlus(data);
 
 // 6) List those who follow someone that doesn't follow them back
+
+console.log('######################')
+console.log('Exercise 6')
+console.log('List those who follow someone that doesn\'t follow them back:')
+
+// Show # of followers for each user:
+tallyFollowers = (data) => {
+
+  // Iterate through every user
+  for (i in data) {
+    var currentUser = data[i].follows;
+    currentUser.forEach((element) => {
+      if (data[element].followed_by == undefined) {
+        data[element].followed_by = [];
+      };
+      data[element].followed_by.push(i);
+    });
+  };
+};
+
+function followNotFollowed(data) {
+  tallyFollowers(data);
+  for (k in data) {
+    var following = data[k].follows;
+    following.forEach((e) => {
+      if (data[k].followed_by.includes(e) === false) {
+        console.log(`- ${data[k].name} follows ${data[e].name},
+                   but ${data[e].name} doesn't follow them back`)
+        return;
+      };
+    });
+  };
+};
+
+followNotFollowed(data);
 
 // 7) List everyone and their reach (sum of # of followers and # of followers of followers)
 
@@ -235,37 +268,22 @@ console.log('######################')
 console.log('Exercise 7')
 console.log('List everyone and their reach:')
 
-  // Show # of followers for each user:
-  tallyFollowers = (data) => {
-
-    // Iterate through every user
-    for (i in data) {
-      var currentUser = data[i].follows;
-      currentUser.forEach((element) => {
-        if (data[element].followed_by == undefined) {
-          data[element].followed_by = [];
-        };
-        data[element].followed_by.push(i);
-      });
-    };
+calculateFollowerReach = (data) => {
+  for (i in data) {
+    data[i].reach = data[i].followed_by.length;
+    var follower = data[i].followed_by;
+    follower.forEach((e) => {
+      data[i].reach += data[e].followed_by.length
+    });
   };
+};
 
-  calculateFollowerReach = (data) => {
-    for (i in data) {
-      data[i].reach = data[i].followed_by.length;
-      var follower = data[i].followed_by;
-      follower.forEach((e) => {
-        data[i].reach += data[e].followed_by.length
-      });
-    };
+prettifyResults = (data) => {
+  for (i in data) {
+    console.log(`User: ${data[i].name}\nTotal reach: ${data[i].reach} users`);
+    console.log('============')
   };
-
-  prettifyResults = (data) => {
-    for (i in data) {
-      console.log(`User: ${data[i].name}\nTotal reach: ${data[i].reach} users`);
-      console.log('============')
-    };
-  };
+};
 
 determineReach = (data) => {
   tallyFollowers(data);
