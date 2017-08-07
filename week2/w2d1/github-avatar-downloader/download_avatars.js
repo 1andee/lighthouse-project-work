@@ -1,3 +1,4 @@
+require('dotenv').config();
 var https = require('https');
 var request = require('request');
 var fs = require('fs');
