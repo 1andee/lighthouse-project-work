@@ -9,7 +9,7 @@ var myArgs = process.argv.slice(2);
 
 function reverse(myArgs) {
 
-  myArgs.forEach(function (element) {
+  myArgs.forEach((element) => {
     var reversedWord = "";
     for (i = element.length - 1; i >= 0; i--) {
       reversedWord += element[i];
