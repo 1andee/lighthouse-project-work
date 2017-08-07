@@ -91,7 +91,7 @@ function printFollowers(element) {
   };
 };
 
-// showNames(data);
+showNames(data);
 
 
 // 2) Identify who follows the most people
@@ -111,7 +111,7 @@ function countFollowers(data) {
   console.log(`${topName}, who follows ${topIdCount} users`);
 };
 
-// countFollowers(data);
+countFollowers(data);
 
 
 // 3) Identify who has the most followers
@@ -126,7 +126,6 @@ function tallyFollowers(data) {
   // Iterate through every user
   for (i in data) {
     var currentUser = data[i].follows;
-
     // Increments follower count, or sets to 1 if user isn't stored in object
     currentUser.forEach(function(element) {
       var name = data[element].name;
@@ -192,7 +191,7 @@ function tallyFollowersThirtyPlus(data) {
 
 };
 
-// tallyFollowersThirtyPlus(data);
+tallyFollowersThirtyPlus(data);
 
 
 // 5) Identify who follows the most people over 30
@@ -226,7 +225,7 @@ function tallyFollowThirtyPlus(data) {
 
 };
 
-// tallyFollowThirtyPlus(data);
+tallyFollowThirtyPlus(data);
 
 // 6) List those who follow someone that doesn't follow them back
 
@@ -236,18 +235,42 @@ console.log('######################')
 console.log('Exercise 7')
 console.log('List everyone and their reach:')
 
-function determineReach(input) {
-  tallyFollowers(input);
   // Show # of followers for each user:
-  console.log(followTally);
-  // Determine # of followers for each follower
-  //
-  // Steps:
-  // 1. Find userID for each follower
-  // 2. Calculate # of followers for each userID
-  // 3. Add this number to followTally object
-  //
-  // Similar to printFollowers (Line 78) or tallyFollowers (Line 123)
+  tallyFollowers = (data) => {
+
+    // Iterate through every user
+    for (i in data) {
+      var currentUser = data[i].follows;
+      currentUser.forEach((element) => {
+        if (data[element].followed_by == undefined) {
+          data[element].followed_by = [];
+        };
+        data[element].followed_by.push(i);
+      });
+    };
+  };
+
+  calculateFollowerReach = (data) => {
+    for (i in data) {
+      data[i].reach = data[i].followed_by.length;
+      var follower = data[i].followed_by;
+      follower.forEach((e) => {
+        data[i].reach += data[e].followed_by.length
+      });
+    };
+  };
+
+  prettifyResults = (data) => {
+    for (i in data) {
+      console.log(`User: ${data[i].name}\nTotal reach: ${data[i].reach} users`);
+      console.log('============')
+    };
+  };
+
+determineReach = (data) => {
+  tallyFollowers(data);
+  calculateFollowerReach(data);
+  prettifyResults(data);
 };
 
-determineReach(data)
+determineReach(data);
