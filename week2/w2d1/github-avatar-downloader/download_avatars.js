@@ -30,16 +30,8 @@ if (userInput.length !== 2) {
   return;
 };
 
-// Error handling if no /avatars/ folder exists
-if (!fs.existsSync('./avatars/')) {
-  console.log("========================================================================")
-  console.log("Error: Please create an /avatars/ subdirectory inside your cloned folder");
-  console.log("========================================================================")
-  return;
-}
 
 console.log('Welcome to the GitHub Avatar Downloader! Commencing download in 3...2...1...');
-
 
 function getRepoContributors(owner, repo, callback) {
 
@@ -99,6 +91,12 @@ getRepoContributors(githubAccount, githubRepo, function(error, response) {
     throw error;
     return;
   };
+
+  if (!fs.existsSync('./avatars/')) {
+    fs.mkdirSync('./avatars/')
+    console.log ("Folder './avatars/' has been created");
+  };
+
   response.forEach(function (response) {
     downloadImageByURL(response.avatar_url, response.login);
     console.log('Downloading avatar for contributor ' + response.login)
