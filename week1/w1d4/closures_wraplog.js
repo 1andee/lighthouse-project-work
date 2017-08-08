@@ -11,7 +11,7 @@ var wrapLog = function (cb, name) {
   */
 
   return function() {
-    var args = Array.prototype.slice.call(arguments);
+    var args = Array.from(arguments);
     console.log(`${name}(${args.join(', ')}) => ${cb.apply(null, args)}`);
   };
 
