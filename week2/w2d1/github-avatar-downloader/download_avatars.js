@@ -7,19 +7,36 @@ var fs = require('fs');
 var GITHUB_USER = process.env.GITHUB_USER;
 var GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
+// Error handling for .env params
+if (!process.env.GITHUB_USER ||
+    !process.env.GITHUB_TOKEN ) {
+      console.log("=============================================================")
+      console.log("Error: Your GitHub username & token are required in .env file");
+      console.log("=============================================================")
+      return;
+    };
+
 // Takes the user-supplied account and repo from Command Line to generate request:
 var userInput = process.argv.slice(2);
 var githubAccount = userInput[0];
 var githubRepo = userInput[1];
 
-// Checks if user has supplied an account and repo
-function checkUserInput (userInput) {
-  if (userInput.length !== 2) {
-    console.log('Please provide a valid GitHub account and Repository.');
-    console.log("The required inputs are: <owner> <repo>");
-    return;
-  }
+// Error handling for user-supplied account/repo params
+if (userInput.length !== 2) {
+  console.log('============================================================')
+  console.log('Error: Please provide a valid GitHub account and Repository.');
+  console.log('       The required inputs are: <owner> <repo>');
+  console.log('============================================================')
+  return;
 };
+
+// Error handling if no /avatars/ folder exists
+if (!fs.existsSync('./avatars/')) {
+  console.log("========================================================================")
+  console.log("Error: Please create an /avatars/ subdirectory inside your cloned folder");
+  console.log("========================================================================")
+  return;
+}
 
 console.log('Welcome to the GitHub Avatar Downloader! Commencing download in 3...2...1...');
 
@@ -64,6 +81,24 @@ function downloadImageByURL(url, filePath) {
 
 // Iterates through JSON data, passing avatar URL and user ID into downloadImageByURL():
 getRepoContributors(githubAccount, githubRepo, function(error, response) {
+  if (response.message === 'Not Found') {
+    console.log('==================================================')
+    console.log('Error: That account/repository couldn\'t be found.');
+    console.log('       Please try again.');
+    console.log('==================================================')
+    return;
+  }
+  if (response.message === 'Bad credentials') {
+    console.log('========================================================')
+    console.log('Error: Your GitHub API token wasn\'t recognized.');
+    console.log('       Change the token in your .env file and try again.');
+    console.log('========================================================')
+    return;
+  }
+  if (error) {
+    throw error;
+    return;
+  };
   response.forEach(function (response) {
     downloadImageByURL(response.avatar_url, response.login);
     console.log('Downloading avatar for contributor ' + response.login)
